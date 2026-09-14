@@ -1,0 +1,15 @@
+# Usage (from the repo root):
+#   docker compose build                      # one-time, pulls TeX Live (~5 GB)
+#   docker compose run --rm tools             # interactive shell in the container
+#   docker compose run --rm tools lualatex -interaction=nonstopmode -halt-on-error main_example.tex
+#
+# Helper: docker compose run --rm -w /work/cv tools lualatex ... compiles inside cv/.
+services:
+  tools:
+    build: .
+    image: ai-job-search-tools
+    working_dir: /work
+    volumes:
+      - .:/work
+    stdin_open: true
+    tty: true
