@@ -1,10 +1,9 @@
-%% Example CV - [YOUR_NAME]
+%% Master CV - Amir Pournasserian
 %% Comprehensive overview of all competencies, experience, and achievements.
 %% Use as a master reference when tailoring role-specific CVs.
 %%
-%% SETUP: Run /setup to populate this with your actual information.
-%% Compile with: lualatex main_example.tex
-%% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
+%% Populated by /setup on 2026-09-14 from documents/cv/Amir_Pournasserian_CA.pdf.
+%% Compile with: docker compose run --rm -w /work/cv tools lualatex main_example.tex
 
 \documentclass[11pt,a4paper,sans]{moderncv}
 \moderncvstyle{banking}
@@ -23,40 +22,25 @@
 \renewcommand*{\sectionstyle}[1]{{\sectionfont\color{color1}#1}}
 
 \usepackage[utf8]{inputenc}
-% pdflatex fallback only (the documented engine is lualatex, which skips this
-% branch). Without T1 font encoding pdflatex builds accented letters with
-% \accent, and the PDF text layer stores them decomposed - `e` + U+0300 rather
-% than U+00E8 - so an ATS keyword match on "Genève" fails while the page looks
-% right. moderncv 2.5 loads T1 itself under pdflatex; 2.3.1 (Debian/Ubuntu apt)
-% does not. \ifpdftex comes from iftex, which every moderncv version loads.
 \ifpdftex\usepackage[T1]{fontenc}\fi
-% moderncv loads hyperref itself in an \AtEndPreamble hook, so \hypersetup
-% must go in an \AtEndPreamble of our own: on moderncv < 2.4 a top-level
-% \usepackage{hyperref} clashes with the class's own
-% \RequirePackage[unicode]{hyperref}. From 2.4.0 the class passes its options
-% through \PassOptionsToPackage instead, which is what removes that clash.
 \AtEndPreamble{\hypersetup{
     colorlinks=true,
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
-    % Keep pdfpagemode=UseNone: this block runs after moderncv's own
-    % \AtEndPreamble (moderncv.cls sets pdfpagemode there), so a FullScreen
-    % value here would win and open every CV in fullscreen presentation mode.
+    pdftitle={Amir Pournasserian - CV},
     pdfpagemode=UseNone,
 }}
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
+\usepackage{needspace}
 
 % personal data
-\name{[First]}{[Last]}
-% If you have no address to list, DELETE this whole line. \address{}{}{} fails
-% with "There's no line here to end" on every moderncv version.
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Amir}{Pournasserian}
+\address{Markham, ON, Canada}{}{}
+\phone[mobile]{+1 647 937 1601}
+\email{amir.pournasserian@live.com}
+\extrainfo{\href{https://www.linkedin.com/in/pournasserian}{LinkedIn}, \href{https://github.com/pournasserian}{GitHub}}
 
 \begin{document}
 
@@ -67,7 +51,7 @@
 % ============================================================
 
 \vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
+\small{Hands-on Principal AI and Enterprise Systems Architect with 20+ years designing mission-critical platforms across banking, fintech, hospitality, IoT and government. Currently leads AI engineering for Four Seasons' AI concierge platform: a five-layer multi-agent pipeline on Microsoft Agent Framework and a production MCP server shipped to ChatGPT and Claude. Production experience in RAG and GraphRAG, agent orchestration and Azure AI, backed by regulated, high-availability systems serving 40,000+ users and 100,000+ events/sec.}
 
 % ============================================================
 %     CORE COMPETENCIES
@@ -77,15 +61,15 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
+\item \textbf{AI Agent \& LLM Systems}: MCP server and client architecture, Microsoft Agent Framework in production, multi-agent orchestration, tool and function calling, structured outputs, context and memory engineering; OpenAI, Gemini and open-source models, fine-tuning with LoRA/QLoRA. Agentic coding with Claude Code.
 
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
+\item \textbf{RAG \& Retrieval}: code-aware chunking, GraphRAG on Neo4j, hybrid vector + keyword retrieval, embedding pipelines; Pinecone, Qdrant, Azure AI Search.
 
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
+\item \textbf{Microsoft Azure}: Microsoft Foundry, AI Search, App Services, Functions, API Management, Service Bus, Cosmos DB, Entra ID and External ID, Managed Identity, Azure Monitor with OpenTelemetry.
 
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
+\item \textbf{Backend \& Data}: C\#, ASP.NET Core, Blazor, microservices, REST, GraphQL, Python; SQL Server, MongoDB, Neo4j, PostgreSQL; RabbitMQ, Rebus, event-driven architecture, high-volume ETL.
 
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
+\item \textbf{Architecture \& Governance}: enterprise reference architectures, secure SDLC (OWASP, PCI, PIPEDA, ISO 27001), CI/CD with GitHub Actions, Agile delivery, mentoring senior engineers and researchers.
 
 \end{itemize}
 
@@ -97,53 +81,107 @@
 \vspace{3pt}
 \begin{itemize}
 
-% --- Most Recent Role ---
-\item{\cventry{[YYYY-Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{Apr 2026-Present}{AI Development Director}{Four Seasons Hotels \& Resorts}{Toronto, Canada}{}{\vspace{1pt}
 \begin{itemize}
-    \item {[Achievement or responsibility 1 - be specific, use numbers where possible]}
-    \item {[Achievement or responsibility 2]}
-    \item {[Achievement or responsibility 3]}
-    \item {[Achievement or responsibility 4]}
+    \item {Lead AI engineering and platform architecture for Golden Eagle, the AI-powered concierge and hotel discovery platform: a five-layer multi-agent pipeline (Shield, Input Guards, Orchestrator, Domain Agents, Output Guards) on .NET and Microsoft Agent Framework with Cosmos DB session storage.}
+    \item {Designed and delivered a production MCP server in C\# on Azure App Service behind API Management with OAuth 2.1, Entra External ID and mTLS; shipped to ChatGPT and Claude with search, room-rate and map widgets built to the MCP Apps standard.}
+    \item {Built the hotel discovery engine on multi-vector semantic search fused with Reciprocal Rank Fusion and an LLM intent classifier; architected a queue-based AEM ingestion pipeline (GraphQL, Service Bus, Cosmos DB).}
+    \item {Established engineering standards, architecture governance and the observability and delivery stack (OpenTelemetry, Azure Monitor, Managed Identity, GitHub Actions across dev, QA and production).}
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Previous Role ---
-\item{\cventry{[YYYY-YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{Sep 2025-Feb 2026}{Principal AI \& Enterprise Systems Architect}{MayAI}{Remote}{}{\vspace{1pt}
 \begin{itemize}
-    \item {[Achievement or responsibility 1]}
-    \item {[Achievement or responsibility 2]}
-    \item {[Achievement or responsibility 3]}
+    \item {Architected a multi-agent personal agent platform on Microsoft Agent Framework coordinating multi-step workflows across Careem, Deliveroo, Keeta and JustLife.}
+    \item {Hybrid persistence (MongoDB, Neo4j, SQL Server) for conversational state and transactions; ASP.NET Core services with a Blazor and Svelte UI.}
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Earlier Role ---
-\item{\cventry{[YYYY-YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{Jan 2025-Sep 2025}{Principal AI \& Enterprise Systems Architect}{Valco AI}{Remote}{}{\vspace{1pt}
 \begin{itemize}
-    \item {[Achievement or responsibility 1]}
-    \item {[Achievement or responsibility 2]}
+    \item {Built a real estate intelligence platform over Dubai Land Department feeds: ETL into SQL Server and MongoDB, forecasting, clustering and anomaly detection, an AI agent for natural-language querying, and a Blazor analytics dashboard.}
 \end{itemize}}}
 
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{Jan 2024-Nov 2024}{Principal AI \& Enterprise Systems Architect}{DevGuardian AI}{Remote}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Architected a multi-agent code review and architecture governance platform (Architect, QA and Security agents) on ASP.NET Core, Blazor, Microsoft Agent Framework and Azure OpenAI.}
+    \item {Designed a multi-layer RAG system: code-aware chunking, GraphRAG over a Neo4j dependency graph, incremental embedding refresh keyed on commit hash, hybrid semantic, symbolic and graph retrieval; Roslyn and LibGit2Sharp analysis with Hangfire orchestration.}
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{Sep 2022-Dec 2023}{Principal \& Enterprise Systems Architect}{FluentCMS (open source)}{Toronto, Canada}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Designed and led a modular, headless-first CMS on ASP.NET Core and Blazor Server: dynamic schema builder, multi-tenancy, versioning, workflow engine, RBAC, multilingual support, plugin extensibility.}
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{Jan 2022-Jun 2022}{CTO}{Lendin}{Toronto, Canada}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Architected a multi-tenant lending and BNPL platform: configurable interest engines, repayment scheduling, multi-gateway payment orchestration and a ledger engine separating principal and interest.}
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{Jan 2019-Dec 2021}{CTO}{TripSupport}{Toronto, Canada}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Architected a microservices travel booking platform (.NET 5, MongoDB) integrating Amadeus, HotelBeds, RateHawk, SoftVoyage, Stripe, Moneris, Bambora and Global Payments, with Svelte/SvelteKit portals and JWT security.}
+    \item {Designed the multi-product booking orchestration engine for flights, hotels, packages, BNPL and coupons with full order lifecycle tracking.}
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{Apr 2015-Dec 2018}{Staff Engineer}{Department of National Defence Canada, IoT Monitoring Platform}{Toronto, Canada}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Designed a mission-critical IoT telemetry platform: secure HTTP, MQTT and CoAP ingestion, RabbitMQ event pipeline for 100+ sensor types, distributed workers for time-series analytics, geo-fencing and alerting, MongoDB replica sets, real-time RBAC dashboards.}
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{Sep 2002-Dec 2016}{Founder \& CEO}{Tajan (acquired by Mellat Bank)}{}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Grew a two-engineer startup into a strategic technology partner of Mellat Bank while staying hands-on in architecture and performance engineering.}
+    \item {Delivered banking platforms: SSO and identity (OAuth2/OpenID), SMS and workflow automation, MIS and Balanced Scorecard, budgeting, reconciliation across 50+ financial formats, nationwide ATM monitoring; thousands of users, 24/7 reliability, full auditability.}
+\end{itemize}}}
+
+\end{itemize}
+
+% ============================================================
+%     OPEN-SOURCE PROJECTS
+% ============================================================
+
+\section{Open-Source Projects}
+\vspace{1pt}
+\begin{itemize}
+\item {\textbf{FluentCMS}: modular, AI-ready .NET CMS platform. \textbf{YeSvelte}: enterprise Svelte UI framework, 100+ components. \textbf{uBeac}: modular ASP.NET Core enterprise framework.}
 \end{itemize}
 
 % ============================================================
 %     EDUCATION
 % ============================================================
 
-\section{Education}
+\section{Education and Certifications}
 \vspace{1pt}
 \begin{itemize}
 
-\item{\cventry{[YYYY-YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
-}}
-
-\vspace{3pt}
-
-\item{\cventry{[YYYY-YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
-}}
+\item{\cventry{2005}{MSc in IT Project Management}{}{}{}{}}
+\item{\cventry{1998}{BSc in Electrical \& Electronics Engineering}{}{}{}{}}
+\item{\cventry{2015}{Data Science specialization, Johns Hopkins University}{}{}{}{}}
+\item{\cventry{2013}{Big Data certifications, University of Michigan and UC San Diego}{}{}{}{}}
 
 \end{itemize}
 
@@ -151,30 +189,11 @@ Thesis: ``[Thesis Title].'' [Brief description of research focus.]
 %     LANGUAGES
 % ============================================================
 
+\enlargethispage{2\baselineskip}
 \section{Languages}
 \vspace{1pt}
 \begin{itemize}
-\item {[Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).}
-\end{itemize}
-
-% ============================================================
-%     PUBLICATIONS (optional)
-% ============================================================
-
-\section{Publications}
-\vspace{1pt}
-\begin{itemize}
-\item {[Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}}
-\end{itemize}
-
-% ============================================================
-%     HONORS AND AWARDS (optional)
-% ============================================================
-
-\section{Honors and Awards}
-\vspace{1pt}
-\begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
+\item {English (professional working proficiency), Persian (native).}
 \end{itemize}
 
 % ============================================================

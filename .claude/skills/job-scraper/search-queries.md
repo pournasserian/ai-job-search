@@ -1,84 +1,125 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- Populated by /setup on 2026-09-14. Re-run `/setup --section search` to change. -->
 
 ## Installed portal CLIs (primary for `/scrape`)
 
-`/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first. Shipped country-agnostic CLIs include `linkedin-search` and `freehire-search`; Danish demos and any skill you add with `/add-portal` are included the same way. You do **not** need a matching `site:` line below for those CLIs to run.
+`/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first. Enabled for this market: `linkedin-search` and `freehire-search`. The Danish demo portals ship disabled and stay disabled. You do **not** need a matching `site:` line below for those CLIs to run.
 
 The `site:` query templates in this file are the **WebSearch fallback** — for portals without a CLI, company career pages, or when a CLI fails.
 
-**Language scope:** write every query category in every language listed in your CLAUDE.md Languages table (typically 1-2, sometimes more). A posting requiring a language you have *not* declared, as a job condition, is excluded before scoring; a posting requiring a *higher level* than you declared in a language you *do* work in is flagged for your own judgment, not excluded — see `04-job-evaluation.md`'s Language Gate, the single source of truth for this rule. Translate each category's keywords rather than machine-translating word-for-word (e.g. "Frontend Developer" -> "Desarrollador Frontend", not a literal word-for-word translation) if you work in more than one language.
+**Language scope:** all queries are in English. The candidate also works in Persian (native), but no target market posts in it, so no Persian queries are generated. Apply `04-job-evaluation.md`'s Language Gate when filtering: a posting requiring a language other than English or Persian as a job condition is excluded.
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+Primary:
+- **linkedin.com/jobs** - LinkedIn job listings (filters: Toronto / Ontario / Canada, and Remote for Canada and United States); also covered by `linkedin-search` CLI
+- **freehire** - covered by `freehire-search` CLI
+- **jobbank.gc.ca** - Government of Canada job bank (WebSearch fallback)
+- **indeed.ca** - general Canadian board (WebSearch fallback)
 
 Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+- Direct Google searches with `site:` filters for target companies: Microsoft, Cohere, Shopify, RBC, TD, Scotiabank, BMO, Wealthsimple, Interac, Expedia, Booking Holdings
 
 ## Query Categories
 
-Queries are grouped by priority. Write **each category in every language from your Languages table** (see Language scope above). Combine each query with your location terms (e.g. your city, region, or metro area) where the site supports it.
+Queries are grouped by priority and organized by function. Combine each query with location terms (Toronto, GTA, Ontario, Canada, Remote) where the site supports it.
 
-**Organize by function, not job title.** The same underlying work carries different titles across companies and markets (a "Data Scientist" role at one employer may be posted as "Insights Analyst" or "Data Consultant" at another). Name each priority category after the function it covers, and list several plausible job titles as query variants within that category rather than betting an entire priority tier on one exact title string.
+### Priority 0: Contract engagements (candidate is contract-only as of 2026-09-14)
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
-
-These match your strongest and most desired career direction.
+Run these first on every scrape. LinkedIn's CLI has no employment-type filter, so the contract term goes in the query text and `detail` output's `employmentType` confirms it; Freehire filters with `--facet employment_type=contract` (value confirmed live 2026-09-14). Staffing agencies that post most GTA contract AI work: Apex Systems, Tundra Technical Solutions, Myticas Consulting, Iris Software, Insight Global, SPECTRAFORCE, Caspian One, Inviso, Pacer Group, PrecisionERP; US remote: CyberCoders, K&K Global, Kforce, TEKsystems.
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_2]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_COUNTRY]
+linkedin-search: -q "AI architect contract" -l "Toronto, Ontario, Canada" --jobage 14
+linkedin-search: -q "LLM agentic AI contract" -l "Canada" --remote remote --jobage 14
+linkedin-search: -q "generative AI consultant contract" -l "Canada" --jobage 14
+linkedin-search: -q "AI architect contract" -l "United States" --remote remote --jobage 14
+linkedin-search: -q "LLM engineer contract C2C" -l "United States" --remote remote --jobage 14
+freehire-search: -q "AI architect agentic LLM" --facet employment_type=contract --country CA --jobage 14
+freehire-search: -q "AI architect agentic LLM" --facet employment_type=contract --country US --remote remote --jobage 14
+site:linkedin.com/jobs "AI architect" contract OR C2C OR "contract to hire" Toronto OR Remote
 ```
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+### Priority 0b: UAE contract engagements (Golden Visa holder, added 2026-09-14)
 
-These match your domain expertise.
-
-```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
-
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
-
-Adjacent roles you could pivot into.
+Dubai and Abu Dhabi on-site/hybrid are in scope. Contract work in the UAE is mostly posted by agencies (Hays, Halian, Manpower Middle East, Archer, Dicetek, Lobo Management, Discovered MENA, HireOn, Salt, TEN-XER, Accellor). Arabic-required or UAE-nationals-only postings fail the gates.
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
+linkedin-search: -q "AI architect contract" -l "Dubai, United Arab Emirates" --jobage 14
+linkedin-search: -q "agentic AI LLM architect" -l "Dubai, United Arab Emirates" --jobage 14
+linkedin-search: -q "AI architect contract" -l "Abu Dhabi, United Arab Emirates" --jobage 14
+linkedin-search: -q "generative AI lead consultant" -l "United Arab Emirates" --jobage 14
+freehire-search: -q "AI architect agentic LLM" --facet employment_type=contract --country AE --jobage 30
+site:linkedin.com/jobs "AI architect" contract Dubai OR "Abu Dhabi"
 ```
 
-### Priority 4: Broader Technical / Consulting
+### Priority 1: AI platform and agent architecture leadership
 
-Wider net for general technical roles.
+The strongest and most desired direction: designing and shipping LLM, agent and MCP systems with technical authority.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:linkedin.com/jobs "Principal AI Engineer" Toronto OR Remote Canada
+site:linkedin.com/jobs "Staff AI Engineer" Toronto OR Remote
+site:linkedin.com/jobs "AI Architect" Toronto OR Canada
+site:linkedin.com/jobs "Head of AI Engineering" Canada OR Remote
+site:linkedin.com/jobs "Director of AI" Toronto OR Remote
+site:linkedin.com/jobs "Principal Software Architect" AI Toronto
+site:linkedin.com/jobs "Model Context Protocol" OR MCP engineer Remote
+site:linkedin.com/jobs "multi-agent" OR "agentic" architect Canada OR "United States" Remote
+site:indeed.ca "AI Architect" OR "Principal AI Engineer" Toronto
+```
+
+### Priority 2: Azure and .NET enterprise architecture
+
+Domain expertise in the Microsoft stack at scale.
+
+```
+site:linkedin.com/jobs "Enterprise Architect" Azure Toronto OR Ontario
+site:linkedin.com/jobs "Principal Engineer" ".NET" Toronto OR Remote Canada
+site:linkedin.com/jobs "Solutions Architect" "Azure AI" OR "Azure OpenAI" Canada
+site:linkedin.com/jobs "Distinguished Engineer" OR "Principal Architect" Azure Remote
+site:indeed.ca "Principal Architect" .NET Azure Toronto
+```
+
+### Priority 3: Technical leadership in fintech, hospitality and travel tech
+
+Adjacent roles where the domain record (banking, lending, BNPL, booking platforms, AI concierge) is the differentiator.
+
+```
+site:linkedin.com/jobs "Head of Engineering" fintech Toronto
+site:linkedin.com/jobs "CTO" OR "VP Engineering" AI startup Toronto OR Remote
+site:linkedin.com/jobs "Tech Lead" LLM OR RAG fintech Canada
+site:linkedin.com/jobs "Principal Engineer" payments OR lending Toronto
+site:linkedin.com/jobs "AI" architect hospitality OR travel Remote
+```
+
+### Priority 4: Broader senior AI engineering
+
+Wider net for senior roles where the stack matches even if the title is less senior.
+
+```
+site:linkedin.com/jobs "Senior AI Engineer" RAG OR LLM Toronto OR Remote Canada
+site:linkedin.com/jobs "LLM Engineer" OR "GenAI Engineer" Canada Remote
+site:linkedin.com/jobs "Machine Learning Architect" Toronto
+site:linkedin.com/jobs "AI consultant" OR "AI solutions" architect Toronto
 ```
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+Home base is Markham, Ontario. Acceptable areas:
+- Markham, Richmond Hill, Vaughan, North York, Scarborough (ideal, short commute)
+- Downtown Toronto, Mississauga, Etobicoke (acceptable, 45-60 min)
+- Oakville, Burlington, Oshawa, Hamilton (borderline, only if hybrid with 1-2 office days)
+- Remote anywhere in Canada or the United States (pass, no commute)
+- Any role requiring relocation, or on-site outside the GTA (too far, fail)
 
 ## Language Filter
 
-Your working languages and levels are in CLAUDE.md's Languages table. When filtering scraped results, apply `04-job-evaluation.md`'s Language Gate: a posting requiring a language you haven't declared at all is excluded; a posting requiring a higher level than you declared in a language you do work in is not excluded, flag it clearly instead (see `job-scraper/SKILL.md`'s Step 3 "Quick Fit Assessment" for how the flag surfaces in `/scrape` output). Postings simply *written* in a language you don't work in, that don't require it on the job, are fine.
+Working languages and levels are in CLAUDE.md's Languages table (English professional, Persian native). Apply `04-job-evaluation.md`'s Language Gate: a posting requiring another language (for example French for bilingual federal or Quebec roles) as a job condition is excluded; a posting asking for "native" or "fluent" English is flagged, not excluded. Postings simply written in another language, without requiring it on the job, are fine.
+
+## Eligibility Filter
+
+Canadian citizen. Canadian roles requiring citizenship, PR or security clearance pass the eligibility gate. US remote roles that require US citizenship, US work authorization without sponsorship, or US-person status for export control fail; flag any US posting that is silent on work authorization.
 
 ## Date Filter
 

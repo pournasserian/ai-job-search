@@ -59,7 +59,7 @@ Expected output: `Output written on main_<company>_<role>.pdf (2 pages, ...)`. A
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Amir Pournasserian - CV},
     % Keep pdfpagemode=UseNone: this block runs after moderncv's own
     % \AtEndPreamble (moderncv.cls sets pdfpagemode there), so a FullScreen
     % value here would win and open every CV in fullscreen presentation mode.
@@ -69,13 +69,13 @@ Expected output: `Output written on main_<company>_<role>.pdf (2 pages, ...)`. A
 \usepackage{import}
 
 % Personal data
-\name{[FIRST_NAME]}{[LAST_NAME]}
+\name{Amir}{Pournasserian}
 % If you have no address to list, DELETE this whole line. \address{}{}{} fails
 % with "There's no line here to end" on every moderncv version.
-\address{[YOUR_ADDRESS]}{}{}
-\phone[mobile]{[YOUR_PHONE]}
-\email{[YOUR_EMAIL]}
-\extrainfo{\href{[YOUR_LINKEDIN_URL]}{LinkedIn}, \href{[YOUR_GITHUB_URL]}{GitHub}}
+\address{Markham, ON, Canada}{}{}
+\phone[mobile]{+1 647 937 1601}
+\email{amir.pournasserian@live.com}
+\extrainfo{\href{https://www.linkedin.com/in/pournasserian}{LinkedIn}, \href{https://github.com/pournasserian}{GitHub}}
 
 \begin{document}
 \makecvtitle
@@ -136,12 +136,14 @@ When the role sits outside your home domain, **lead with the domain-transfer arg
 
 **Create 2-3 profile statement templates for your main role types:**
 
-<!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For Principal / Staff AI engineering and AI architect roles:**
+> Hands-on Principal AI and Enterprise Systems Architect with 20+ years designing mission-critical platforms across banking, fintech, hospitality, IoT and government. Currently leads AI engineering for Four Seasons' AI concierge platform: a five-layer multi-agent pipeline on Microsoft Agent Framework and a production MCP server shipped to ChatGPT and Claude. Brings production experience in RAG and GraphRAG, agent orchestration and Azure AI, backed by regulated, high-availability systems serving 40,000+ users and 100,000+ events/sec.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For AI leadership roles (Director, Head of AI Engineering, CTO):**
+> AI Development Director and former founder-CEO who grew a two-engineer firm into a bank's strategic technology partner, then took CTO and principal roles across fintech, travel and AI-native ventures. Establishes architecture governance, secure SDLC and observability alongside greenfield builds, and mentors senior engineers and researchers while staying in the code. Most recently delivered Four Seasons' multi-agent concierge platform and MCP integrations on Azure.
+
+**For Azure / .NET enterprise architect roles:**
+> Enterprise Systems Architect with two decades on the Microsoft stack: ASP.NET Core, Blazor, Azure App Services, API Management, Service Bus, Cosmos DB, Entra ID and Microsoft Foundry. Designed multi-tenant lending, travel booking and CMS platforms, a defence IoT telemetry pipeline on RabbitMQ and MongoDB, and, most recently, Azure-hosted AI agent platforms with OAuth 2.1, mTLS and Managed Identity across services.
 
 Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `01-candidate-profile.md` - a past tailored draft does not vouch for its own accuracy.
 

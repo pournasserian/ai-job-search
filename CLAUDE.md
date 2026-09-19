@@ -1,91 +1,109 @@
-# Job Application Assistant for [YOUR_NAME]
+# Job Application Assistant for Amir Pournasserian
 
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
+<!-- Populated by /setup on 2026-09-14 from documents/cv/Amir_Pournasserian_CA.pdf -->
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Amir Pournasserian, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
 4. **Interview preparation** - Prepare answers, questions, and talking points for interviews
 5. **Career strategy** - Advise on positioning and personal branding
 
+## Toolchain
+LaTeX, Python and Bun run inside Docker, not on the Windows host. Compile and verify through the `tools` service:
+- CV: `docker compose run --rm -w /work/cv tools lualatex -interaction=nonstopmode -halt-on-error <file>.tex`
+- Cover letter: `docker compose run --rm -w /work/cover_letters tools xelatex -interaction=nonstopmode -halt-on-error <file>.tex`
+- PDF checks: `docker compose run --rm tools python3 tools/verify_pdf.py <pdf> ...`
+- Portal CLIs: `docker compose run --rm -w /work/.agents/skills/<portal>/cli tools bun run src/cli.ts ...`
+Compiled PDFs land in the repo via the bind mount, so read them from the host path as usual.
+
 ## Candidate Profile
 
-<!-- This section is auto-populated by /setup. You can also fill it in manually. -->
-
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
+- **Name:** Amir Pournasserian
+- **Location:** Markham, Ontario, Canada (GTA on-site or hybrid; remote anywhere in Canada or the US; no relocation)
+- **Work eligibility:** Canadian citizen; UAE Golden Visa holder (eligible to work in the UAE without employer sponsorship). Dubai and Abu Dhabi on-site/hybrid roles are in scope (added 2026-09-14).
 - **Languages:**
   | Language | Level |
   |----------|-------|
-  | [LANGUAGE] | [LEVEL] |
-  <!-- Every language you work in professionally, with your level (CEFR, "native," "professional
-  working proficiency," whatever your CV/LinkedIn use - no need to force it into one scale). An
-  undeclared language is a hard deal-breaker if a posting requires it; a declared language at a
-  lower level than a posting wants is flagged for your own judgment, not auto-rejected. See
-  04-job-evaluation.md's Language Gate. -->
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
+  | English | Professional working proficiency |
+  | Persian (Farsi) | Native |
+- **CV language:** English
 
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Status:** Employed (AI Development Director, Four Seasons Hotels & Resorts, since Apr 2026), open to Principal / Staff / Tech Lead / AI leadership roles
+- **LinkedIn headline:** "Principal AI & Enterprise Systems Architect"
 
 ### Education
-<!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **MSc in IT Project Management** (2005) - institution to be confirmed
+- **BSc in Electrical & Electronics Engineering** (1998) - institution to be confirmed
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+- **AI Development Director** (Apr 2026 - Present) - **Four Seasons Hotels & Resorts** (Toronto)
+  - Leads AI engineering and platform architecture for Golden Eagle, an AI concierge and hotel discovery platform: five-layer multi-agent pipeline on .NET and Microsoft Agent Framework, Cosmos DB session storage, agent lifecycle model
+  - Delivered a production MCP server in C# on Azure App Service behind API Management with OAuth 2.1, Entra External ID and mTLS; shipped to ChatGPT and Claude as plugin/connector with MCP Apps widgets
+  - Established engineering standards, architecture governance and an observability/delivery stack (OpenTelemetry, Azure Monitor, Managed Identity, GitHub Actions CI/CD)
+- **Principal AI & Enterprise Systems Architect** (Sep 2025 - Feb 2026) - **MayAI** (AI personal agent platform)
+  - Architected a multi-agent orchestration platform (Microsoft Agent Framework) coordinating workflows across Careem, Deliveroo, Keeta and JustLife
+  - Hybrid persistence (MongoDB + Neo4j + SQL Server); ASP.NET Core services; Blazor + Svelte UI
+- **Principal AI & Enterprise Systems Architect** (Jan 2025 - Sep 2025) - **Valco AI** (real estate intelligence)
+  - ETL pipelines over Dubai Land Department feeds; forecasting, clustering, anomaly detection and predictive scoring; AI agent layer for natural-language querying; Blazor analytics dashboard
+- **Hands-on Principal AI & Enterprise Systems Architect** (Jan 2024 - Nov 2024) - **DevGuardian AI** (multi-agent code review)
+  - Multi-agent code review and architecture governance platform on ASP.NET Core, Blazor, Microsoft Agent Framework and Azure OpenAI
+  - Multi-layer RAG: code-aware chunking, GraphRAG on Neo4j, incremental embedding refresh by commit hash, hybrid retrieval; Roslyn and LibGit2Sharp analysis; Hangfire orchestration
+- **Hands-on Principal & Enterprise Systems Architect** (Sep 2022 - Dec 2023) - **FluentCMS** (open source, Toronto)
+  - Designed and led a modular headless-first CMS on ASP.NET Core and Blazor Server: dynamic schema builder, multi-tenancy, versioning, workflow engine, RBAC, multilingual support
+- **CTO** (Jan 2022 - Jun 2022) - **Lendin** (lending and BNPL platform, Toronto)
+  - Multi-tenant lending platform: configurable interest engines, repayment scheduling, payment orchestration across gateways, financial ledger engine
+- **CTO** (Jan 2019 - Dec 2021) - **TripSupport** (travel booking ecosystem, Toronto)
+  - Microservices travel platform (.NET 5, MongoDB) integrating Amadeus, HotelBeds, RateHawk, SoftVoyage, Stripe, Moneris, Bambora and Global Payments; Svelte/SvelteKit portals; payment orchestration and JWT security
+- **Hands-on Staff Engineer** (Apr 2015 - Dec 2018) - **Department of National Defence Canada, IoT monitoring platform** (Toronto)
+  - Mission-critical IoT telemetry platform: HTTP/MQTT/CoAP ingestion, RabbitMQ event pipeline for 100+ sensor types, distributed workers for time-series analytics, geo-fencing and alerting, MongoDB replica sets, real-time RBAC dashboards
+- **Founder & CEO** (Sep 2002 - Dec 2016) - **Tajan** (acquired by Mellat Bank)
+  - Grew a two-engineer startup into a strategic technology partner of Mellat Bank; hands-on enterprise architecture throughout
+  - Banking platforms: SSO/identity (OAuth2/OpenID), SMS and workflow automation, MIS and Balanced Scorecard, budgeting, reconciliation engines for 50+ financial formats, nationwide ATM monitoring, HR systems
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** LLM application architecture (OpenAI, Gemini, open-source models, fine-tuning, LoRA/QLoRA), AI agent engineering, MCP server and client architecture, multi-agent systems (Microsoft Agent Framework in production), RAG and GraphRAG, Azure AI (Microsoft Foundry, AI Search, App Services, Functions, API Management, Service Bus, Cosmos DB, Entra ID), C# / ASP.NET Core / Blazor, enterprise and distributed systems architecture
+- **Secondary:** Python, Svelte/SvelteKit, TypeScript, GraphQL, vector databases (Pinecone, Qdrant), classical ML (forecasting, anomaly detection, clustering, ANN/CNN/RNN), event-driven systems (RabbitMQ, Rebus), SQL Server, MongoDB, Neo4j, PostgreSQL, MySQL
+- **Domain:** Banking and fintech (lending, BNPL, reconciliation, payments), hospitality and travel booking, IoT telemetry, government/defence platforms, AI-native consumer products
+- **Software:** Git/GitHub, GitHub Actions CI/CD, OpenTelemetry, Azure Monitor, Hangfire, Roslyn, Docker, Agile/Scrum; agentic coding with Claude Code
+
+### Open Source (verified 2026-09-14)
+- **FluentCMS** - 565 stars, #1 contributor (627 commits); **YeSvelte** - 222 stars; **Microsoft Agent Framework Sample** - 24 samples incl. MCP integration, 10 stars. Contract vehicle: **Momentaj Inc** (momentaj.com).
 
 ### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+- **Data Science specialization** - Johns Hopkins University - 2015
+- **Big Data certifications** - University of Michigan and UC San Diego - 2013
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
+- None listed.
 
 ### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- None listed.
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+<!-- Inferred from the resume, not from a formal assessment. Review and correct. -->
+- **Hands-on architect** - stays in the code while owning architecture and governance; every role from CEO to director is described in terms of what was built
+- **Builder-founder** - grew and sold a company, has repeatedly taken CTO/principal roles at early-stage ventures
+- **Strengths:** end-to-end system ownership, translating new AI capability into production-grade regulated systems, mentoring senior engineers and researchers, cross-functional alignment with product and executives
+- **Growth areas:** long tenures at small ventures mean less experience inside large-company process; frame as bringing startup velocity into enterprise settings
+- **Thrives in:** high-autonomy roles with real technical authority, greenfield AI platforms, small senior teams
 
 ### What Excites You
-<!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Building AI-native products: agents, MCP, multi-agent orchestration, RAG at production scale
+- Owning architecture end to end in regulated or high-scale environments
 
 ### Target Sectors
-<!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- AI-native product companies and AI platform teams: Microsoft, Cohere, Shopify, hospitality/travel tech
+- Banking and fintech: Canadian banks, lenders, payments companies
+- Enterprise SaaS and consultancies building agentic systems on Azure/.NET
 
 ### Deal-breakers
-<!-- Hard constraints on job search. Language requirements are handled separately and
-automatically from your Languages table above - don't duplicate them here. -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+- **Contract engagements only** (stated 2026-09-14): permanent/full-time employee roles are out of scope unless the user says otherwise. Contract, C2C, fixed-term and consulting engagements pass.
+- Relocation required outside the two bases: Markham/GTA (home) and Dubai/Abu Dhabi (Golden Visa). Remote in Canada, the US or the UAE is fine.
+- Roles below Principal / Staff / Lead level, or pure people-management with no hands-on technical scope
+- Citizenship or clearance gates outside Canada (Canadian citizen; a US-citizenship requirement fails)
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

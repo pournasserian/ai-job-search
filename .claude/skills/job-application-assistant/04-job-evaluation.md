@@ -60,9 +60,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** LLM application architecture, AI agent engineering, MCP server/client design, multi-agent systems (Microsoft Agent Framework), RAG and GraphRAG, Azure AI and Azure platform services, C# / ASP.NET Core / Blazor, enterprise and distributed systems architecture, event-driven systems, SQL Server / MongoDB / Neo4j, secure SDLC and compliance (PCI, PIPEDA, OWASP, ISO 27001)
+**Moderate match areas:** Python (ML pipelines, not primary backend language), classical ML and forecasting, Svelte/TypeScript frontend, vector databases, GraphQL, Kubernetes-style container orchestration (Docker yes, k8s not evidenced)
+**Weak match areas:** AWS and GCP (Azure-native), PyTorch/JAX model training at research depth, Java/Go/Rust ecosystems, data engineering platforms (Spark, Databricks, Snowflake), mobile development, French
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for? Match on the function and nature of the work performed, not the literal job title - a "Data Consultant" and a "Data Scientist" role can be functionally identical.
@@ -74,9 +74,9 @@ Does work history align with what they're looking for? Match on the function and
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** Principal / Staff / Lead AI or platform architect roles; AI engineering leadership (Director, Head of AI Engineering); CTO or Head of Engineering at early-stage ventures; enterprise architecture on Azure/.NET; fintech, hospitality/travel, IoT and government platform builds
+**Moderate:** Large-enterprise engineering management with big teams and budgets (Four Seasons is the main evidence); ML/data science leadership (certifications and applied forecasting, not a research background); developer advocacy or solutions engineering for AI platforms
+**Entry-level:** Research scientist roles, data engineering platform roles, mobile or embedded roles
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -91,7 +91,9 @@ Does the role and company culture match the behavioral profile?
 **Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
+- **Engagement type gate (candidate preference, 2026-09-14): contract only.** A posting that is explicitly permanent/full-time employee: FAIL. Contract, C2C, fixed-term, consulting or "contract-to-hire": PASS. Employment type not stated: FLAG and note it.
 - Within commute range: PASS
+- Dubai or Abu Dhabi on-site/hybrid: PASS (UAE Golden Visa; no sponsorship needed). Other UAE emirates: FLAG. Postings requiring UAE nationals only or Arabic as a job condition: FAIL (Arabic is not on the language table).
 - Remote with occasional office: PASS
 - Requires relocation: FAIL (deal-breaker)
 - Frequent international travel: FLAG (discuss with user)
@@ -107,19 +109,19 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Principal / Staff / Tech Lead or AI leadership role with real architectural authority over an AI platform
+- Keep building hands-on: agents, MCP, multi-agent orchestration, RAG in production, not pure people management
+- Work at a scale or brand that compounds the track record (large enterprise AI platform or well-funded AI-native company)
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
+- Tasks that energize: greenfield AI platform design, shipping new standards (MCP, agent frameworks) to production, defining architecture and engineering governance, mentoring senior engineers
+- Tasks that drain: maintenance-only scope, roles with no code ownership, heavy change-control bureaucracy without technical authority
 - Non-task factors: leadership style, department culture, company values, degree of autonomy
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Security**: currently employed; can be selective, no pressure to accept a step down
+- **Flexibility**: Markham base; GTA hybrid or remote (Canada/US) preferred; no relocation
+- **Professional development**: staying at the frontier of agentic AI systems matters more than title inflation
 
 ### 6. Salary Benchmark (Optional)
 
